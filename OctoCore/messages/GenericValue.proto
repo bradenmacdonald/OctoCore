@@ -1,0 +1,35 @@
+syntax = "proto2"; // Until LITE_RUNTIME is supported
+option optimize_for = LITE_RUNTIME;
+package Octo;
+
+message ListValue {
+    repeated GenericValue entries = 1;
+}
+message Int64ListValue {
+    repeated sfixed64 entries = 1 [packed=true];
+}
+message StringListValue {
+    repeated string entries = 1;
+}
+message MapValue {
+    map<fixed32, GenericValue> entries = 1;
+}
+message SMapValue { // Map with string keys
+    map<string, GenericValue> entries = 1;
+}
+message GenericValue {
+    oneof value {
+        string string = 1;
+        bytes bytes = 2;
+        int32 int32 = 3;
+        int64 int64 = 5;
+        bool boolean = 7;
+        double real = 8;
+
+        MapValue map = 10;
+        SMapValue str_map = 11;
+        ListValue list = 12;
+        Int64ListValue int_list = 13;
+        StringListValue str_list = 14;
+    }
+}

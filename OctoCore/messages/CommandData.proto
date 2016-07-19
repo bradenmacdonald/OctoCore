@@ -1,0 +1,11 @@
+syntax = "proto2"; // Until LITE_RUNTIME is supported
+option optimize_for = LITE_RUNTIME;
+package Octo;
+
+import "GenericValue.proto";
+
+message CommandData {
+    optional int32 command_id = 1;
+    optional Octo.MapValue args = 2;
+    optional Octo.MapValue result = 3;
+}
